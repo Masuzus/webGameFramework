@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#080914">
+  <meta name="color-scheme" content="dark">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/main.css">
+  <title>Lumen Grid</title>
+</head>
+<body>
+  <main id="appShell">
+    <div class="ambient-grid" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="brand-lockup">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span><small>LUMEN GRID</small><strong>信号场</strong></span>
+      </div>
+      <button id="pauseButton" class="icon-button" type="button" aria-label="暂停动画" title="暂停动画">&#x23F8;</button>
+    </header>
+
+    <section class="hud" aria-label="场景状态">
+      <div class="hud-copy"><span>层级</span><strong>LV 01</strong></div>
+      <div class="meter" role="progressbar" aria-label="能量" aria-valuemin="0" aria-valuemax="100" aria-valuenow="68">
+        <div class="meter-fill"></div><span>68 / 100</span>
+      </div>
+      <div class="reward"><span aria-hidden="true">*</span><strong id="rewardValue">240</strong></div>
+    </section>
+
+    <section class="game-stage" aria-label="霓虹网格风格演示">
+      <canvas id="gameCanvas"></canvas>
+      <div class="stage-label"><small>SECTOR</small><strong>GRID-07</strong></div>
+    </section>
+
+    <footer class="actionbar">
+      <div class="telemetry">
+        <span><small>状态</small><strong id="statusValue">运行中</strong></span>
+        <span><small>信号</small><strong class="accent-blue">稳定</strong></span>
+        <span><small>威胁</small><strong class="accent-danger">03</strong></span>
+      </div>
+      <button id="resetButton" class="primary-action" type="button">重置场景</button>
+    </footer>
+  </main>
+  <script src="./assets/main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,302 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+  place-items: center;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: radial-gradient(circle at 50% 18%, #171a32 0, #080811 48%, var(--color-page) 100%);
+  color: var(--color-text);
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  user-select: none;
+}
+
+button {
+  color: inherit;
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#appShell {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  width: min(430px, 100vw);
+  height: min(900px, 100dvh);
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: linear-gradient(180deg, #101024, var(--color-shell) 66%, #050509);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, .72), 0 0 42px rgba(0, 170, 255, .1);
+}
+
+.ambient-grid {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: .32;
+  background-image:
+    linear-gradient(rgba(0, 255, 204, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 170, 255, .045) 1px, transparent 1px);
+  background-size: 28px 28px;
+  animation: ambient-move 14s linear infinite;
+  pointer-events: none;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: max(16px, env(safe-area-inset-top)) 16px 10px;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-lockup small,
+.hud-copy span,
+.stage-label small,
+.telemetry small {
+  display: block;
+  color: var(--color-muted);
+  font-size: 9px;
+  line-height: 1.25;
+}
+
+.brand-lockup strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 15px;
+}
+
+.brand-mark {
+  display: grid;
+  grid-template-columns: repeat(2, 12px);
+  gap: 3px;
+  width: 27px;
+  height: 27px;
+  transform: rotate(45deg);
+}
+
+.brand-mark i {
+  border: 1px solid #8ffff0;
+  border-radius: 3px;
+  background: linear-gradient(145deg, #47e1bd, #168fac);
+  box-shadow: 0 0 9px rgba(0, 255, 204, .24);
+}
+
+.brand-mark i:nth-child(2) { background: var(--color-secondary); }
+.brand-mark i:nth-child(3) { background: #187967; }
+.brand-mark i:nth-child(4) { background: var(--color-magic); border-color: #ff93e6; }
+
+.icon-button {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid var(--line-active);
+  border-radius: 8px;
+  background: rgba(0, 255, 204, .08);
+  color: #bffff3;
+  cursor: pointer;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  margin: 0 14px 10px;
+  padding: 9px 10px;
+  border: 1px solid rgba(84, 235, 217, .22);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(7, 18, 25, .88), rgba(4, 11, 18, .76));
+  box-shadow: inset 0 0 18px rgba(0, 255, 204, .05), 0 8px 24px rgba(0, 0, 0, .2);
+}
+
+.hud-copy strong {
+  display: block;
+  margin-top: 2px;
+  color: #91fff0;
+  font-size: 11px;
+  text-shadow: 0 0 9px rgba(0, 255, 204, .5);
+}
+
+.meter {
+  position: relative;
+  height: 13px;
+  overflow: hidden;
+  border: 1px solid rgba(122, 239, 228, .22);
+  border-radius: 7px;
+  background: rgba(1, 7, 13, .9);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, .5);
+}
+
+.meter-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 68%;
+  background: linear-gradient(90deg, #08bda7, #31e0d8 58%, #8dfff0);
+  box-shadow: 0 0 15px rgba(47, 243, 220, .65);
+}
+
+.meter > span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--color-text);
+  font-size: 8px;
+  font-weight: 800;
+  text-shadow: 0 1px 3px #00110f;
+}
+
+.reward {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-reward);
+  font-size: 12px;
+}
+
+.reward span {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border: 2px solid #ffe591;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #fff4a4, #f4b82b 48%, #b76708 100%);
+  color: #7c4300;
+  box-shadow: 0 0 11px rgba(255, 197, 55, .45);
+}
+
+.game-stage {
+  position: relative;
+  min-height: 0;
+  margin: 0 14px;
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--color-world);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, .65), 0 14px 36px rgba(0, 0, 0, .28);
+}
+
+#gameCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.stage-label {
+  position: absolute;
+  right: 9px;
+  bottom: 8px;
+  padding: 5px 7px;
+  border-left: 2px solid var(--color-magic);
+  background: rgba(5, 8, 16, .66);
+  pointer-events: none;
+}
+
+.stage-label strong {
+  display: block;
+  margin-top: 1px;
+  color: #e3b7ff;
+  font-size: 10px;
+}
+
+.actionbar {
+  padding: 12px 14px max(14px, env(safe-area-inset-bottom));
+}
+
+.telemetry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 9px;
+  border-top: 1px solid rgba(255, 255, 255, .07);
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+}
+
+.telemetry > span {
+  padding: 8px 4px;
+  text-align: center;
+}
+
+.telemetry > span + span {
+  border-left: 1px solid rgba(255, 255, 255, .07);
+}
+
+.telemetry strong {
+  display: block;
+  margin-top: 3px;
+  color: #bffff3;
+  font-size: 11px;
+}
+
+.telemetry .accent-blue { color: #7ed6ff; }
+.telemetry .accent-danger { color: #ff849b; }
+
+.primary-action {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  background: linear-gradient(100deg, rgba(0, 255, 204, .24), rgba(0, 120, 255, .24));
+  box-shadow: 0 0 24px rgba(0, 255, 204, .14);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 2px solid #dffff8;
+  outline-offset: 2px;
+}
+
+button:active {
+  filter: brightness(1.25);
+  transform: scale(.98);
+}
+
+@keyframes ambient-move {
+  to { background-position: 28px 56px; }
+}
+
+@media (max-width: 520px) {
+  #appShell {
+    width: 100vw;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+}
+
+@media (max-height: 650px) {
+  .topbar { padding-top: max(10px, env(safe-area-inset-top)); }
+  .hud { margin-bottom: 7px; }
+  .actionbar { padding-top: 8px; }
+  .telemetry { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-grid { animation: none; }
+}
+

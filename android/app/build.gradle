@@ -1,0 +1,47 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.example.lumencanvas'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'com.example.lumencanvas'
+        minSdk 23
+        targetSdk 36
+        versionCode 1
+        versionName '0.1.0'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+tasks.register('syncWebAssets', Copy) {
+    def webDistDir = rootProject.file('../dist')
+
+    doFirst {
+        if (!new File(webDistDir, 'index.html').isFile()) {
+            throw new GradleException('Web assets are missing. Run "npm install" and "npm run build" in the project root first.')
+        }
+        delete "$projectDir/src/main/assets"
+    }
+
+    from(webDistDir)
+    into "$projectDir/src/main/assets"
+}
+
+tasks.named('preBuild').configure {
+    dependsOn 'syncWebAssets'
+}
+

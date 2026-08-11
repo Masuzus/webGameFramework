@@ -1,0 +1,20 @@
+:root {
+  color-scheme: dark;
+  --color-page: #030306;
+  --color-shell: #080914;
+  --color-world: #0d0d1a;
+  --color-panel: #101827;
+  --color-grid: rgba(255, 255, 255, .035);
+  --color-primary: #00ffcc;
+  --color-secondary: #00aaff;
+  --color-magic: #ff00cc;
+  --color-reward: #ffd34d;
+  --color-danger: #ff405d;
+  --color-text: #efffff;
+  --color-muted: #7e88a7;
+  --color-ink: #081114;
+  --line-soft: rgba(160, 170, 255, .18);
+  --line-active: rgba(0, 255, 204, .38);
+  --panel-glass: rgba(7, 18, 25, .82);
+}
+

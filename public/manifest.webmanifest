@@ -1,0 +1,22 @@
+{
+  "id": "lumen-canvas-starter",
+  "name": "Lumen Canvas Starter",
+  "short_name": "Lumen Grid",
+  "description": "A clean Canvas 2D game starter and visual reference.",
+  "lang": "zh-CN",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#080914",
+  "theme_color": "#080914",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
